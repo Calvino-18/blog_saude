@@ -76,7 +76,7 @@ const participantsList = document.querySelector('#participants-list');
 const loadParticipants = async () => {
   try {
     const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/calculos_agua?select=nome,criado_em&order=criado_em.desc&limit=1000`,
+      `${SUPABASE_URL}/rest/v1/calculos_agua?select=nome,peso_kg,quantidade_ml,criado_em&order=criado_em.desc&limit=1000`,
       {
         headers: {
           apikey: SUPABASE_ANON_KEY,
@@ -96,7 +96,12 @@ const loadParticipants = async () => {
       const normalizedName = name.toLocaleLowerCase('pt-BR');
       if (name && !seenNames.has(normalizedName)) {
         seenNames.add(normalizedName);
-        uniqueParticipants.push({ name, date: record.criado_em });
+        uniqueParticipants.push({
+          name,
+          weight: record.peso_kg,
+          amount: record.quantidade_ml,
+          date: record.criado_em
+        });
       }
     });
 
@@ -104,12 +109,14 @@ const loadParticipants = async () => {
       ? `${uniqueParticipants.length} participante${uniqueParticipants.length === 1 ? '' : 's'} na nossa comunidade.`
       : 'Ainda não há participantes. Seja o primeiro!';
 
-    participantsList.innerHTML = uniqueParticipants.map(({ name, date }) => {
+    participantsList.innerHTML = uniqueParticipants.map(({ name, weight, amount, date }) => {
       const initial = name.charAt(0).toLocaleUpperCase('pt-BR');
       const joinedDate = date
         ? new Date(date).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' })
         : '';
-      return `<article class="participant-card"><span class="participant-avatar" aria-hidden="true">${escapeHtml(initial)}</span><div><strong>${escapeHtml(name)}</strong><small>${joinedDate ? `Participante desde ${joinedDate}` : 'Participante da comunidade'}</small></div></article>`;
+      const formattedWeight = Number(weight).toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+      const formattedAmount = Number(amount).toLocaleString('pt-BR');
+      return `<article class="participant-card"><span class="participant-avatar" aria-hidden="true">${escapeHtml(initial)}</span><div class="participant-details"><strong>${escapeHtml(name)}</strong><small>${formattedWeight} kg · ${formattedAmount} ml de água por dia</small><small>${joinedDate ? `Participante desde ${joinedDate}` : 'Participante da comunidade'}</small></div></article>`;
     }).join('');
   } catch (error) {
     participantsStatus.textContent = 'Não foi possível carregar os participantes agora. Tente novamente mais tarde.';

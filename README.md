@@ -1,5 +1,5 @@
 ## Integração com o Supabase
 
-Antes de publicar a página, abra o SQL Editor do projeto Supabase e execute o conteúdo de [`supabase.sql`](supabase.sql). Ele cria a tabela `calculos_agua`, habilita RLS, permite a inserção pública dos cálculos e a leitura dos nomes para a lista de participantes.
+Antes de publicar a página, abra o SQL Editor do projeto Supabase e execute o conteúdo de [`supabase.sql`](supabase.sql). Ele cria a tabela `calculos_agua`, habilita RLS, permite a inserção pública dos cálculos e a leitura dos dados exibidos na lista de participantes.
 
-A página usa somente a chave pública `anon`. Não use uma chave `service_role` no navegador. A lista pública exibe apenas os nomes dos participantes; os e-mails não são consultados pela página. Avalie informar aos usuários como esses dados serão utilizados.
+A página usa somente a chave pública `anon`. Não use uma chave `service_role` no navegador. A lista pública exibe os nomes, o peso e a meta diária de água dos participantes; os e-mails não são consultados pela página. Avalie informar aos usuários como esses dados serão utilizados.
