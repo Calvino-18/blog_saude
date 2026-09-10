@@ -15,3 +15,9 @@ create policy "Permitir salvar cálculo de água"
   on public.calculos_agua for insert
   to anon
   with check (true);
+
+drop policy if exists "Permitir listar participantes" on public.calculos_agua;
+create policy "Permitir listar participantes"
+  on public.calculos_agua for select
+  to anon
+  using (true);

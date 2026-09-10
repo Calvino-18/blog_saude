@@ -69,3 +69,56 @@ const updateProgress = () => {
   checks.forEach((check) => check.closest('label').classList.toggle('checked', check.checked));
 };
 checks.forEach((check) => check.addEventListener('change', updateProgress));
+
+const participantsStatus = document.querySelector('#participants-status');
+const participantsList = document.querySelector('#participants-list');
+
+const loadParticipants = async () => {
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/calculos_agua?select=nome,criado_em&order=criado_em.desc&limit=1000`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      }
+    );
+
+    if (!response.ok) throw new Error('Não foi possível carregar os participantes.');
+
+    const records = await response.json();
+    const uniqueParticipants = [];
+    const seenNames = new Set();
+
+    records.forEach((record) => {
+      const name = String(record.nome || '').trim();
+      const normalizedName = name.toLocaleLowerCase('pt-BR');
+      if (name && !seenNames.has(normalizedName)) {
+        seenNames.add(normalizedName);
+        uniqueParticipants.push({ name, date: record.criado_em });
+      }
+    });
+
+    participantsStatus.textContent = uniqueParticipants.length
+      ? `${uniqueParticipants.length} participante${uniqueParticipants.length === 1 ? '' : 's'} na nossa comunidade.`
+      : 'Ainda não há participantes. Seja o primeiro!';
+
+    participantsList.innerHTML = uniqueParticipants.map(({ name, date }) => {
+      const initial = name.charAt(0).toLocaleUpperCase('pt-BR');
+      const joinedDate = date
+        ? new Date(date).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' })
+        : '';
+      return `<article class="participant-card"><span class="participant-avatar" aria-hidden="true">${escapeHtml(initial)}</span><div><strong>${escapeHtml(name)}</strong><small>${joinedDate ? `Participante desde ${joinedDate}` : 'Participante da comunidade'}</small></div></article>`;
+    }).join('');
+  } catch (error) {
+    participantsStatus.textContent = 'Não foi possível carregar os participantes agora. Tente novamente mais tarde.';
+    console.error(error);
+  }
+};
+
+const escapeHtml = (value) => value.replace(/[&<>'"]/g, (character) => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+}[character]));
+
+loadParticipants();
