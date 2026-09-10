@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Preservando a saúde física e mental com informação prática sobre alimentação, movimento, hidratação e bem-estar.">
+  <title>Viva Leve | Saúde física e mental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="inicio">
+    <nav class="nav container" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Viva Leve, início">
+        <span class="brand-mark">✦</span><span>viva<span>leve</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#alimentacao">Alimentação</a>
+        <a href="#movimento">Movimento</a>
+        <a href="#hidratacao">Hidratação</a>
+        <a href="#bem-estar">Bem-estar</a>
+        <a class="nav-cta" href="#rotina">Minha rotina <span>→</span></a>
+      </div>
+    </nav>
+
+    <div class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> ATIVIDADE DE EXTENSÃO II</p>
+        <h1>Seu corpo é sua<br><em>casa.</em> Cuide bem.</h1>
+        <p class="hero-text">Pequenas escolhas, feitas todos os dias, constroem uma vida com mais energia, equilíbrio e presença.</p>
+        <div class="hero-actions">
+          <a href="#alimentacao" class="button button-primary">Começar a explorar <span>↗</span></a>
+          <a href="#rotina" class="text-link">Ver minha rotina <span>→</span></a>
+        </div>
+        <div class="hero-note"><span class="note-icon">♥</span><span>Não precisa ser perfeito.<br><strong>Precisa ser possível.</strong></span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustração de uma pessoa cuidando da saúde">
+        <div class="sun"></div><div class="blob blob-back"></div><div class="blob blob-front"></div>
+        <div class="plant plant-one">❧</div><div class="plant plant-two">❧</div>
+        <div class="person"><div class="head"></div><div class="hair"></div><div class="body"></div><div class="arm arm-left"></div><div class="arm arm-right"></div><div class="leg leg-left"></div><div class="leg leg-right"></div></div>
+        <div class="floating-card water-card"><span>💧</span><div><strong>Hidrate-se</strong><small>Seu corpo agradece</small></div></div>
+        <div class="floating-card sleep-card"><span>☼</span><div><strong>+ equilíbrio</strong><small>um dia de cada vez</small></div></div>
+      </div>
+    </div>
+    <div class="hero-bottom container"><span>01 — 05</span><div class="line"><i></i></div><span>um guia para viver melhor</span></div>
+  </header>
+
+  <main>
+    <section class="intro container">
+      <p class="eyebrow">OS CINCO PILARES</p>
+      <div class="section-heading"><h2>Saúde não é destino.<br><em>É um caminho.</em></h2><p>Não existe uma fórmula única para cuidar de si. Existe atenção, informação e a liberdade de escolher o que faz sentido para você.</p></div>
+      <div class="pillar-grid">
+        <a href="#alimentacao" class="pillar-card active"><span class="pillar-number">01</span><span class="pillar-icon">◒</span><strong>Alimentação</strong><small>Nutrir de dentro para fora</small><span class="card-arrow">↗</span></a>
+        <a href="#movimento" class="pillar-card"><span class="pillar-number">02</span><span class="pillar-icon">⌁</span><strong>Movimento</strong><small>O corpo foi feito para se mover</small><span class="card-arrow">↗</span></a>
+        <a href="#hidratacao" class="pillar-card"><span class="pillar-number">03</span><span class="pillar-icon">◌</span><strong>Hidratação</strong><small>Água é energia vital</small><span class="card-arrow">↗</span></a>
+        <a href="#flora" class="pillar-card"><span class="pillar-number">04</span><span class="pillar-icon">♧</span><strong>Flora intestinal</strong><small>Cuidar do que não vemos</small><span class="card-arrow">↗</span></a>
+        <a href="#bem-estar" class="pillar-card"><span class="pillar-number">05</span><span class="pillar-icon">♡</span><strong>Bem-estar</strong><small>Quando a mente respira</small><span class="card-arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section class="food-section" id="alimentacao">
+      <div class="container food-layout"><div class="food-copy"><p class="eyebrow">01 / ALIMENTOS FUNCIONAIS</p><h2>Comer bem é<br><em>um ato de cuidado.</em></h2><p>Uma alimentação variada fornece os nutrientes que o corpo precisa para ter disposição, proteção e vitalidade. Valorize os alimentos da sua região e da sua cultura.</p><div class="food-filter" role="tablist" aria-label="Filtrar alimentos"><button class="filter active" data-filter="todos">Todos</button><button class="filter" data-filter="frutas">Frutas</button><button class="filter" data-filter="vegetais">Vegetais</button><button class="filter" data-filter="proteinas">Proteínas</button></div></div>
+        <div class="food-grid"><article class="food-item" data-category="frutas"><span class="food-emoji">🍊</span><strong>Frutas</strong><p>Banana, maçã, laranja, tangerina e goiaba.</p></article><article class="food-item" data-category="vegetais"><span class="food-emoji">🥕</span><strong>Verduras e legumes</strong><p>Alface, cebola, alho, abóbora e cenoura.</p></article><article class="food-item" data-category="proteinas"><span class="food-emoji">🥚</span><strong>Proteínas</strong><p>Carne, ovos, frango e peixe.</p></article><article class="food-item" data-category="outros"><span class="food-emoji">🌰</span><strong>Castanhas</strong><p>Castanha de caju e castanha-do-pará.</p></article><article class="food-item" data-category="outros"><span class="food-emoji">🌽</span><strong>Cereais</strong><p>Feijão, arroz, milho e seus derivados.</p></article><article class="food-item" data-category="outros"><span class="food-emoji">🌿</span><strong>Plantas PANC</strong><p>Beldroega, ora-pro-nóbis, mastruz e manjericão.</p></article></div>
+      </div>
+    </section>
+
+    <section class="movement-section" id="movimento"><div class="container movement-layout"><div class="movement-visual"><span class="circle-label">MOVA<br>SEU<br>CORPO</span><div class="motion-line"></div><div class="shoe">◒</div></div><div class="movement-copy"><p class="eyebrow">02 / ATIVIDADE FÍSICA</p><h2>Movimento que<br><em>faz sentido.</em></h2><p>Não é sobre ultrapassar limites. É sobre encontrar uma atividade que traga prazer e praticá-la com equilíbrio. Caminhar ou correr de 3 km a 5 km já é um ótimo começo.</p><div class="stat-row"><div><strong>03—05</strong><span>km de caminhada<br>ou corrida</span></div><div><strong>∞</strong><span>respeito pelo<br>seu ritmo</span></div></div></div></div></section>
+
+    <section class="water-section" id="hidratacao"><div class="container water-layout"><div class="water-copy"><p class="eyebrow">03 / HIDRATAÇÃO</p><h2>Água para<br><em>seguir fluindo.</em></h2><p>A quantidade ideal varia de pessoa para pessoa. Uma referência usada por especialistas é <strong>35 ml de água para cada quilo</strong> do seu peso.</p><div class="tip">✦ <span>Use o resultado como referência. Em caso de dúvidas, converse com um profissional de saúde.</span></div></div><div class="calculator"><div class="calc-top"><span class="calc-drop">◒</span><span>CALCULADORA DE HIDRATAÇÃO</span></div><h3>Quanto de água<br>você precisa hoje?</h3><label for="peso">Seu peso <span>em kg</span></label><div class="input-wrap"><input id="peso" type="number" min="1" placeholder="Ex.: 70"><span>kg</span></div><button id="calc-button" class="button button-dark">Calcular minha meta <span>→</span></button><p id="resultado" class="result" aria-live="polite"></p></div></div></section>
+
+    <section class="gut-section" id="flora"><div class="container gut-layout"><div><p class="eyebrow">04 / FLORA INTESTINAL</p><h2>Um universo<br><em>por dentro.</em></h2></div><div class="gut-content"><p>O intestino também merece atenção. Uma flora equilibrada apoia o funcionamento do organismo e começa com escolhas simples.</p><div class="gut-cards"><div><span>01</span><h3>Probióticos</h3><p>O kefir ajuda a repovoar a microbiota com bactérias saudáveis.</p></div><div><span>02</span><h3>Prebióticos</h3><p>A biomassa de banana verde alimenta os probióticos e favorece o intestino.</p></div></div></div></div></section>
+
+    <section class="mind-section" id="bem-estar"><div class="container"><p class="eyebrow">05 / BEM-ESTAR MENTAL E SOCIAL</p><div class="mind-heading"><h2>Você também<br>precisa de <em>pausa.</em></h2><p>Bem-estar é conseguir lidar com a vida sem deixar de reconhecer a si mesmo no caminho.</p></div><div class="mind-grid"><article><span class="mind-icon">☼</span><h3>Autocuidado & rotina</h3><p>Sono regulado, alimentação equilibrada e movimento liberam neurotransmissores importantes para o humor.</p></article><article><span class="mind-icon">↗</span><h3>Resiliência emocional</h3><p>Adaptar-se às mudanças e acolher sentimentos difíceis também é uma forma de força.</p></article><article><span class="mind-icon">♡</span><h3>Rede de apoio</h3><p>Conexões genuínas e seguras funcionam como proteção para a saúde mental e social.</p></article></div><div class="alert"><span>!</span><p><strong>Olhe para os sinais.</strong> Mudanças drásticas de humor, insônia persistente, fadiga, isolamento ou perda de interesse merecem atenção e suporte profissional.</p></div></div></section>
+
+    <section class="routine-section" id="rotina"><div class="container routine-layout"><div><p class="eyebrow">PARA LEVAR COM VOCÊ</p><h2>Minha rotina<br><em>possível.</em></h2><p>Escolha um passo para começar hoje. Amanhã, você pode escolher outro.</p></div><div class="checklist"><label><input type="checkbox"><span>☼</span> Dormi e respeitei meu descanso</label><label><input type="checkbox"><span>◒</span> Comi algo nutritivo</label><label><input type="checkbox"><span>⌁</span> Movimentei meu corpo</label><label><input type="checkbox"><span>♡</span> Fiz uma pausa para mim</label><div class="progress"><div class="progress-top"><span>Minha constância</span><strong id="progress-label">0 / 4</strong></div><div class="progress-bar"><i id="progress-fill"></i></div></div></div></div></section>
+  </main>
+  <footer><div class="container footer-content"><a class="brand" href="#inicio"><span class="brand-mark">✦</span><span>viva<span>leve</span></span></a><p>Preservando a saúde física e mental.</p><span class="footer-small">Atividade de Extensão II · 2024</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
