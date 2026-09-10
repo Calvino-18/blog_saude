@@ -16,12 +16,49 @@ document.querySelectorAll('.filter').forEach((button) => button.addEventListener
   document.querySelectorAll('.food-item').forEach((item) => item.classList.toggle('hide', filter !== 'todos' && item.dataset.category !== filter));
 }));
 
-document.querySelector('#calc-button').addEventListener('click', () => {
+const SUPABASE_URL = 'https://jadboofwnkgsybzpcvkx.supabase.co';
+// Chave pública (anon); a proteção dos dados é feita pelas políticas RLS do Supabase.
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZGJvb2Z3bmtnc3lienBjdmt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwNTk3NDAsImV4cCI6MjEwNDYzNTc0MH0.rrnLvXxKc6MdyOPML9kpsD192Nc1QN25zbKRjMEa-As';
+
+document.querySelector('#water-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const name = document.querySelector('#nome').value.trim();
+  const email = document.querySelector('#email').value.trim();
   const weight = Number(document.querySelector('#peso').value);
   const result = document.querySelector('#resultado');
-  if (!weight || weight <= 0) { result.textContent = 'Digite um peso válido para calcular.'; return; }
-  const amount = weight * 35;
-  result.textContent = `Sua referência diária: ${amount.toLocaleString('pt-BR')} ml (${(amount / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} L).`;
+  const button = document.querySelector('#calc-button');
+
+  if (!form.reportValidity() || !weight || weight <= 0) {
+    result.textContent = 'Preencha nome, e-mail e um peso válido para calcular.';
+    return;
+  }
+
+  const amount = Math.round(weight * 35);
+  button.disabled = true;
+  result.textContent = 'Calculando...';
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/calculos_agua`, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({ nome: name, email, peso_kg: weight, quantidade_ml: amount })
+    });
+
+    if (!response.ok) throw new Error('Não foi possível salvar o cálculo.');
+    result.textContent = `Sua referência diária: ${amount.toLocaleString('pt-BR')} ml (${(amount / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} L).`;
+    form.reset();
+  } catch (error) {
+    result.textContent = 'Não foi possível salvar seus dados agora. Tente novamente.';
+    console.error(error);
+  } finally {
+    button.disabled = false;
+  }
 });
 
 const checks = [...document.querySelectorAll('.checklist input')];
