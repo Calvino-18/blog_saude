@@ -24,13 +24,12 @@ document.querySelector('#water-form').addEventListener('submit', async (event) =
   event.preventDefault();
   const form = event.currentTarget;
   const name = document.querySelector('#nome').value.trim();
-  const email = document.querySelector('#email').value.trim();
   const weight = Number(document.querySelector('#peso').value);
   const result = document.querySelector('#resultado');
   const button = document.querySelector('#calc-button');
 
   if (!form.reportValidity() || !weight || weight <= 0) {
-    result.textContent = 'Preencha nome, e-mail e um peso válido para calcular.';
+    result.textContent = 'Preencha seu nome e um peso válido para calcular.';
     return;
   }
 
@@ -47,7 +46,7 @@ document.querySelector('#water-form').addEventListener('submit', async (event) =
         'Content-Type': 'application/json',
         Prefer: 'return=minimal'
       },
-      body: JSON.stringify({ nome: name, email, peso_kg: weight, quantidade_ml: amount })
+      body: JSON.stringify({ nome: name, peso_kg: weight, quantidade_ml: amount })
     });
 
     if (!response.ok) throw new Error('Não foi possível salvar o cálculo.');
@@ -60,15 +59,6 @@ document.querySelector('#water-form').addEventListener('submit', async (event) =
     button.disabled = false;
   }
 });
-
-const checks = [...document.querySelectorAll('.checklist input')];
-const updateProgress = () => {
-  const done = checks.filter((check) => check.checked).length;
-  document.querySelector('#progress-label').textContent = `${done} / ${checks.length}`;
-  document.querySelector('#progress-fill').style.width = `${done / checks.length * 100}%`;
-  checks.forEach((check) => check.closest('label').classList.toggle('checked', check.checked));
-};
-checks.forEach((check) => check.addEventListener('change', updateProgress));
 
 const participantsStatus = document.querySelector('#participants-status');
 const participantsList = document.querySelector('#participants-list');
